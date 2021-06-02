@@ -1,0 +1,13 @@
+FROM debian:buster
+
+#COPY ./srcs/ /srcs/
+
+EXPOSE 80
+
+RUN apt-get update \
+	&& apt-get install -y wget \
+	&& apt-get install -y nginx \
+	&& apt-get install -y php7.3-fpm 
+
+# CMD bash /srcs/run_config.sh && 
+CMD tail -f > /dev/null
