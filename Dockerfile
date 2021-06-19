@@ -1,13 +1,11 @@
 FROM debian:buster
 
-#COPY ./srcs/ /srcs/
-
-EXPOSE 80
-
-RUN apt-get update \
-	&& apt-get install -y wget \
-	&& apt-get install -y nginx \
-	&& apt-get install -y php7.3-fpm 
-
-# CMD bash /srcs/run_config.sh && 
-CMD tail -f > /dev/null
+COPY srcs/hocus_pocus.sh /
+COPY srcs/start.sh /
+COPY srcs/config.inc.php /
+COPY srcs/nginx_config /
+COPY srcs/wp-config.php /
+COPY srcs/wordpress.sql /
+COPY srcs/autoindexer.sh /
+RUN /hocus_pocus.sh
+CMD bash start.sh && tail -f > /dev/null 
